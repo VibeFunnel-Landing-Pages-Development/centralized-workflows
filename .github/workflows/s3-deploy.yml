@@ -41,6 +41,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
+    - name: 🔍 Debug AWS env values
+      run: |
+        echo "AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}"
+        echo "Length of AWS_ACCESS_KEY_ID: ${#AWS_ACCESS_KEY_ID}"
+      shell: bash
+
     - name: Sync files to S3
       uses: jakejarvis/s3-sync-action@v0.5.1
       with:
