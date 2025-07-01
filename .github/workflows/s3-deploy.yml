@@ -5,8 +5,11 @@ on:
     inputs:
       source_dir:
         description: 'Source directory to deploy'
-        required: false
-        default: '.'
+        required: true
+        type: string
+      source_dir:
+        description: 'Target directory to deploy'
+        required: true
         type: string
       delete_flag:
         description: 'Whether to delete files in the bucket that are not in the source'
@@ -41,3 +44,4 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_REGION: ${{ secrets.AWS_REGION }}
         SOURCE_DIR: ${{ inputs.source_dir }}
+        DEST_DIR: ${{ inputs.dest_dir }}
