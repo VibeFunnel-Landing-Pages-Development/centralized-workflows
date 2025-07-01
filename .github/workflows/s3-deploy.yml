@@ -7,7 +7,7 @@ on:
         description: 'Source directory to deploy'
         required: true
         type: string
-      source_dir:
+      dest_dir:
         description: 'Target directory to deploy'
         required: true
         type: string
@@ -37,7 +37,7 @@ jobs:
     - name: Sync files to S3
       uses: jakejarvis/s3-sync-action@v0.5.1
       with:
-        args: ${{ inputs.delete_flag && '--delete' || '' }}
+        args: ${{ inputs.delete_flag == true && '--delete' || '' }}
       env:
         AWS_S3_BUCKET: ${{ secrets.S3_BUCKET_NAME }}
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -45,3 +45,4 @@ jobs:
         AWS_REGION: ${{ secrets.AWS_REGION }}
         SOURCE_DIR: ${{ inputs.source_dir }}
         DEST_DIR: ${{ inputs.dest_dir }}
+
